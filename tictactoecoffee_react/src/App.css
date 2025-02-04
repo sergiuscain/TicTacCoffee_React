@@ -12,7 +12,7 @@ body {
     text-align: center;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
     color: #6f4c3e; /* Темный коричневый цвет */
 }
 
@@ -30,6 +30,11 @@ h1 {
     font-size: 40px;
     cursor: pointer;
     transition: background-color 0.3s;
+    /* Центрирование содержимого */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
 }
 
     .cell:hover {
