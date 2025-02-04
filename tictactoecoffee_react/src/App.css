@@ -40,3 +40,8 @@ h1, h2, h3, h4, h5, h6 {
     .cell:hover {
         background-color: #c2b2a1; /* Темный бежевый при наведении */
     }
+
+.icon {
+    width: 60px;
+    height: 60px;
+}
