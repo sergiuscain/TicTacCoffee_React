@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f0e1; /* Светлый бежевый фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: #6f4c3e; /* Темный коричневый цвет */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin: 20px auto;
+}
+
+.cell {
+    background-color: #d8cfc4; /* Светлый коричневый цвет */
+    border: none;
+    border-radius: 8px;
+    font-size: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .cell:hover {
+        background-color: #c2b2a1; /* Темный бежевый при наведении */
+    }
