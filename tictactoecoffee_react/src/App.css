@@ -41,6 +41,19 @@ h1, h2, h3, h4, h5, h6 {
         background-color: #c2b2a1; /* Темный бежевый при наведении */
     }
 
+.cell-winn {
+    background-color:  cornflowerblue; /* Светлый победителя цвет */
+    border: none;
+    border-radius: 8px;
+    font-size: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* Центрирование содержимого */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
 .icon {
     width: 60px;
     height: 60px;
