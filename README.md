@@ -43,7 +43,8 @@ npm start
 - **CSS** — стилизация приложения.
 
 ## Скриншот
-![Скриншот игры](![image](https://github.com/user-attachments/assets/35cfc995-be9c-48ca-a08f-ecc45d38a0c6)
+![image](https://github.com/user-attachments/assets/de5fb0f1-22df-40b8-8eaa-4af487052d93)
+
 )
 
 ## Будущие улучшения
