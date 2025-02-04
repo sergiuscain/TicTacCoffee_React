@@ -15,8 +15,8 @@
 ### 1. Клонирование репозитория
 Клонируйте данный репозиторий на ваш локальный компьютер:
 ```bash
-git clone https://github.com/ваш-профиль/coffee-nolik.git
-cd coffee-nolik
+gh repo clone sergiuscain/TicTacToeCoffee_React
+cd TicTacToeCoffee_React
 ```
 
 ### 2. Установка зависимостей
@@ -31,7 +31,7 @@ npm install
 npm start
 ```
 
-Приложение откроется в вашем браузере по адресу [http://localhost:3000](http://localhost:3000).
+Приложение откроется в вашем браузере по адресу [http://localhost:10553/](http://localhost:10553/).
 
 ## Структура проекта
 - `src/App.js` — основной компонент приложения, содержащий логику игры.
@@ -43,7 +43,8 @@ npm start
 - **CSS** — стилизация приложения.
 
 ## Скриншот
-![Скриншот игры](https://via.placeholder.com/800x400?text=Кофе-Нолики+скриншот)
+![Скриншот игры](![image](https://github.com/user-attachments/assets/35cfc995-be9c-48ca-a08f-ecc45d38a0c6)
+)
 
 ## Будущие улучшения
 - Добавление проверки победителя.
