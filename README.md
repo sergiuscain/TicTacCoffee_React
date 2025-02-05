@@ -32,7 +32,7 @@
     <li>Запустите проект:
         <pre><code>npm start</code></pre>
     </li>
-    <li>Откройте браузер и перейдите по адресу <code>[http://localhost:3000](http://localhost:10553/)</code>.</li>
+    <li>Откройте браузер и перейдите по адресу <code>http://localhost:10553/</code>.</li>
 </ol>
 
 <h2>Использование</h2>
