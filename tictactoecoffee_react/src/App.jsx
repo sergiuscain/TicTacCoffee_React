@@ -19,32 +19,15 @@ const SYMBOL_O = (
 ); // Нолик в виде изображения
 
 function Game() {
-    const [cells, setCells] = useState([null, null, null, null, null, null, null, null, null]);
-    const [currentStep, setCurrentStep] = useState(SYMBOL_O);
-    const [winnerSequence, setWinnerSequence] = useState(null);
-    const winnerSymbol = winnerSequence ? cells[winnerSequence[0]] : undefined;
-    const isDraw = !winnerSequence && cells.filter(c => c).length === 9;
-    console.log(cells);
-
-    const handleCellClick = (index) => {
-        if (cells[index] || winnerSequence) {
-            return;
-        }
-        const cellsCopy = cells.slice();
-        cellsCopy[index] = currentStep;  //Записываем текущий ход
-        const winner = checkWinner(cellsCopy); //Проверяем, есть ли победитель
-
-        setCells(cellsCopy);
-        setCurrentStep(currentStep === SYMBOL_O ? SYMBOL_X : SYMBOL_O);
-        setWinnerSequence(winner); //Устонавливаем победителя с помощью useState
-    };
-
-    const handleResetClick = () => {
-        setCells(Array.from({ length: 9 }, () => null));
-        setCurrentStep(Math.random() > 0.5  ? SYMBOL_X : SYMBOL_O)
-        setWinnerSequence(undefined);
-    };
-
+    const {
+        cells,
+        currentStep,
+        winnerSequence,
+        handleCellClick,
+        handleResetClick,
+        winnerSymbol,
+        isDraw,
+    } = useGameState();
     return (
         <div className="container">
             <h1>Кофе-Нолики</h1>
@@ -110,3 +93,39 @@ function checkWinner(cells) {
     return null;
 }
 
+function useGameState() {
+    const [cells, setCells] = useState([null, null, null, null, null, null, null, null, null]);
+    const [currentStep, setCurrentStep] = useState(SYMBOL_O);
+    const [winnerSequence, setWinnerSequence] = useState(null);
+    const winnerSymbol = winnerSequence ? cells[winnerSequence[0]] : undefined;
+    const isDraw = !winnerSequence && cells.filter(c => c).length === 9;
+
+    const handleCellClick = (index) => {
+        if (cells[index] || winnerSequence) {
+            return;
+        }
+        const cellsCopy = cells.slice();
+        cellsCopy[index] = currentStep;  //Записываем текущий ход
+        const winner = checkWinner(cellsCopy); //Проверяем, есть ли победитель
+
+        setCells(cellsCopy);
+        setCurrentStep(currentStep === SYMBOL_O ? SYMBOL_X : SYMBOL_O);
+        setWinnerSequence(winner); //Устонавливаем победителя с помощью useState
+    };
+
+    const handleResetClick = () => {
+        setCells(Array.from({ length: 9 }, () => null));
+        setCurrentStep(Math.random() > 0.5 ? SYMBOL_X : SYMBOL_O)
+        setWinnerSequence(undefined);
+    };
+
+    return {
+        cells,
+        currentStep,
+        winnerSequence,
+        handleCellClick,
+        handleResetClick,
+        winnerSymbol,
+        isDraw,
+    }
+}
