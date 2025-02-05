@@ -21,6 +21,8 @@ function Game() {
     const [cells, setCells] = useState([null, null, null, null, null, null, null, null, null]);
     const [currentStep, setCurrentStep] = useState(SYMBOL_O);
     const [winnerSequence, setWinnerSequence] = useState(null);
+    const winnerSymbol = winnerSequence ? cells[winnerSequence[0]] : undefined;
+    const isDraw = !winnerSequence && cells.filter(c => c).length === 9;
     console.log(cells);
 
     const handleCellClick = (index) => {
@@ -35,12 +37,20 @@ function Game() {
         setCurrentStep(currentStep === SYMBOL_O ? SYMBOL_X : SYMBOL_O);
         setWinnerSequence(winner); //Устонавливаем победителя с помощью useState
     };
-    const winnerSymbol = winnerSequence ? cells[winnerSequence[0]] : undefined;
+
+    const handleResetClick = () => {
+        setCells(Array.from({ length: 9 }, () => null));
+        setCurrentStep(Math.random() > 0.5  ? SYMBOL_X : SYMBOL_O)
+        setWinnerSequence(undefined);
+    };
 
     return (
         <div className="container">
             <h1>Кофе-Нолики</h1>
-            <h2>{winnerSequence ? "Победитель" : "Ход" }: {winnerSymbol ?? currentStep}</h2>
+            <h2>
+                {isDraw ? "Ничья:(" : winnerSequence ? "Победитель" : "Ход"}
+                {!isDraw ? winnerSymbol ?? currentStep : ""}
+            </h2>
             <div className="grid">
                 {cells.map((symbol, index) => {
                     const isWinner = winnerSequence?.includes(index);
@@ -51,6 +61,7 @@ function Game() {
                     );
                 })}
             </div>
+            <button onClick={handleResetClick}>Сброс</button>
         </div>
     );
 }
