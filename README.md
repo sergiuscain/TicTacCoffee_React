@@ -21,10 +21,10 @@
 <h2>Установка</h2>
 <ol>
     <li>Клонируйте репозиторий:
-        <pre><code>git clone https://github.com/ваш_логин/кроссики-нулли.git</code></pre>
+        <pre><code>gh repo clone sergiuscain/TicTacCoffee_React</code></pre>
     </li>
     <li>Перейдите в директорию проекта:
-        <pre><code>cd кроссики-нулли</code></pre>
+        <pre><code>cd ...TicTacToeCoffee_React/tictactoecoffee_react</code></pre>
     </li>
     <li>Установите зависимости:
         <pre><code>npm install</code></pre>
@@ -32,7 +32,7 @@
     <li>Запустите проект:
         <pre><code>npm start</code></pre>
     </li>
-    <li>Откройте браузер и перейдите по адресу <code>http://localhost:3000</code>.</li>
+    <li>Откройте браузер и перейдите по адресу <code>[http://localhost:3000](http://localhost:10553/)</code>.</li>
 </ol>
 
 <h2>Использование</h2>
