@@ -10,6 +10,11 @@ function App() {
 export default App;
 
 const MODES = {
+    latteNolik: {
+        X: `☕`, // Латте
+        O: <img src="https://gas-kvas.com/grafic/uploads/posts/2023-10/1696531355_gas-kvas-com-p-kartinki-nolik-2.png" alt="Нолик" className="icon" />, // Нолик
+        className: 'coffee-milk',
+    },
     coffeeMilk: {
         X: `☕`,
         O: `🥛`,
@@ -63,7 +68,7 @@ const MODES = {
 };
 
 function Game() {
-    const [gameMode, setGameMode] = useState('coffeeMilk'); // Режим игры (по умолчанию "Кофе против Молока")
+    const [gameMode, setGameMode] = useState('latteNolik'); // Режим игры (по умолчанию "Кофе против Молока")
     const {
         cells,
         currentStep,
@@ -110,6 +115,7 @@ function GameModeSelector({ gameMode, setGameMode, onReset }) {
         <div className="game-mode-selector">
             <label htmlFor="game-mode">Выберите режим: </label>
             <select id="game-mode" value={gameMode} onChange={handleModeChange}>
+                <option value="latteNolik">Кофе-Нолики</option>
                 <option value="coffeeMilk">Кофе против Молока</option>
                 <option value="starPlanet">Звезда против Планеты</option>
                 <option value="catDog">Кот против Собаки</option>
