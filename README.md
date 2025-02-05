@@ -44,7 +44,7 @@
 </ul>
 
 <h2>Скриншоты</h2>
-<p><img src="path/to/screenshot.png" alt="Скриншот игры" /></p>
+<p><img src="https://github.com/user-attachments/assets/28178568-0abe-4062-8762-9c23d61e6ed2" alt="Скриншот игры" /></p>
 
 
 <h2>Контакты</h2>
