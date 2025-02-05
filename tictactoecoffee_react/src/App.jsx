@@ -1,4 +1,5 @@
-﻿import * as React from 'react';
+﻿/* eslint-disable react/prop-types */
+import * as React from 'react';
 import './App.css';
 import { useState } from 'react';
 
@@ -47,10 +48,7 @@ function Game() {
     return (
         <div className="container">
             <h1>Кофе-Нолики</h1>
-            <h2>
-                {isDraw ? "Ничья:(" : winnerSequence ? "Победитель" : "Ход"}
-                {!isDraw ? winnerSymbol ?? currentStep : ""}
-            </h2>
+            <GameInfo isDraw={isDraw} currentStep={currentStep} winnerSymbol={winnerSymbol} />
             <div className="grid">
                 {cells.map((symbol, index) => {
                     const isWinner = winnerSequence?.includes(index);
@@ -66,6 +64,25 @@ function Game() {
     );
 }
 
+function GameInfo({isDraw, currentStep, winnerSymbol }) {
+    if (isDraw) {
+        return(
+            <div>
+                <h2>Ничья:(</h2>
+            </div>
+     )}
+    if (winnerSymbol) {
+        return(
+            <div>
+                <h2>Победитель: {winnerSymbol }</h2>
+            </div>
+    )}
+    return (
+        <div>
+            <h2>Ход: {currentStep}</h2>
+        </div>
+    )
+}
 function checkWinner(cells) {
     // Возможные выигрышные комбинации
     const winningCombinations = [
