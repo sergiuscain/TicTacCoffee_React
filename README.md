@@ -46,8 +46,7 @@
 <h2>Скриншоты</h2>
 <p><img src="https://github.com/user-attachments/assets/28178568-0abe-4062-8762-9c23d61e6ed2" alt="Скриншот игры" /></p>
 <p><img src="https://github.com/user-attachments/assets/3a7dd3d1-571f-4048-b72f-e7393e3d39a0" alt="Скриншот игры" /></p>
-
-<p><img src="https://github.com/user-attachments/assets/28178568-0abe-4062-8762-9c23d61e6ed2" alt="Скриншот игры" /></p>
+<p><img src="https://github.com/user-attachments/assets/55c4e630-83d8-4ed6-a164-191a93c1671c" alt="Скриншот игры" /></p>
 <p><img src="https://github.com/user-attachments/assets/28178568-0abe-4062-8762-9c23d61e6ed2" alt="Скриншот игры" /></p>
 
 
