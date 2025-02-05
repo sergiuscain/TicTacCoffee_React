@@ -1,7 +1,7 @@
 ﻿/* eslint-disable react/prop-types */
 import * as React from 'react';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
     return <Game />;
@@ -9,16 +9,61 @@ function App() {
 
 export default App;
 
-const SYMBOL_X = `☕`; // Латте
-const SYMBOL_O = (
-    <img
-        src="https://gas-kvas.com/grafic/uploads/posts/2023-10/1696531355_gas-kvas-com-p-kartinki-nolik-2.png"
-        alt="Нолик"
-        className="icon"
-    />
-); // Нолик в виде изображения
+const MODES = {
+    coffeeMilk: {
+        X: `☕`,
+        O: `🥛`,
+        className: 'coffee-milk',
+    },
+    starPlanet: {
+        X: `⭐`,
+        O: `🌍`,
+        className: 'star-planet',
+    },
+    catDog: {
+        X: `🐱`,
+        O: `🐶`,
+        className: 'cat-dog',
+    },
+    fireWater: {
+        X: `🔥`,
+        O: `💧`,
+        className: 'fire-water',
+    },
+    sunMoon: {
+        X: `🌞`,
+        O: `🌙`,
+        className: 'sun-moon',
+    },
+    appleOrange: {
+        X: `🍎`,
+        O: `🍊`,
+        className: 'apple-orange',
+    },
+    robotHuman: {
+        X: `🤖`,
+        O: `👤`,
+        className: 'robot-human',
+    },
+    dragonUnicorn: {
+        X: `🐉`,
+        O: `🦄`,
+        className: 'dragon-unicorn',
+    },
+    birdFish: {
+        X: `🐦`,
+        O: `🐟`,
+        className: 'bird-fish',
+    },
+    bookComputer: {
+        X: `📚`,
+        O: `💻`,
+        className: 'book-computer',
+    },
+};
 
 function Game() {
+    const [gameMode, setGameMode] = useState('coffeeMilk'); // Режим игры (по умолчанию "Кофе против Молока")
     const {
         cells,
         currentStep,
@@ -27,10 +72,17 @@ function Game() {
         handleResetClick,
         winnerSymbol,
         isDraw,
-    } = useGameState();
+    } = useGameState(MODES[gameMode]);
+
+    // Меняем стиль страницы при смене режима
+    useEffect(() => {
+        document.body.className = MODES[gameMode].className;
+    }, [gameMode]);
+
     return (
         <div className="container">
             <h1>Кофе-Нолики</h1>
+            <GameModeSelector gameMode={gameMode} setGameMode={setGameMode} onReset={handleResetClick} />
             <GameInfo isDraw={isDraw} currentStep={currentStep} winnerSymbol={winnerSymbol} />
             <div className="grid">
                 {cells.map((symbol, index) => {
@@ -42,81 +94,106 @@ function Game() {
                     );
                 })}
             </div>
-            <button onClick={handleResetClick}>Сброс</button>
+            <button onClick={() => handleResetClick(MODES[gameMode])}>Сброс</button>
         </div>
     );
 }
 
-function GameInfo({isDraw, currentStep, winnerSymbol }) {
+function GameModeSelector({ gameMode, setGameMode, onReset }) {
+    const handleModeChange = (e) => {
+        const newMode = MODES[e.target.value]; // Получаем новый режим
+        setGameMode(e.target.value); // Обновляем состояние режима
+        onReset(newMode); // Сбрасываем игру с учётом нового режима
+    };
+
+    return (
+        <div className="game-mode-selector">
+            <label htmlFor="game-mode">Выберите режим: </label>
+            <select id="game-mode" value={gameMode} onChange={handleModeChange}>
+                <option value="coffeeMilk">Кофе против Молока</option>
+                <option value="starPlanet">Звезда против Планеты</option>
+                <option value="catDog">Кот против Собаки</option>
+                <option value="fireWater">Огонь против Воды</option>
+                <option value="sunMoon">Солнце против Луны</option>
+                <option value="appleOrange">Яблоко против Апельсина</option>
+                <option value="robotHuman">Робот против Человека</option>
+                <option value="dragonUnicorn">Дракон против Единорога</option>
+                <option value="birdFish">Птица против Рыбы</option>
+                <option value="bookComputer">Книга против Компьютера</option>
+            </select>
+        </div>
+    );
+}
+
+
+
+function GameInfo({ isDraw, currentStep, winnerSymbol }) {
     if (isDraw) {
-        return(
+        return (
             <div>
-                <h2>Ничья:(</h2>
+                <h2>Ничья :(</h2>
             </div>
-     )}
+        );
+    }
     if (winnerSymbol) {
-        return(
+        return (
             <div>
-                <h2>Победитель: {winnerSymbol }</h2>
+                <h2>Победитель: {winnerSymbol}</h2>
             </div>
-    )}
+        );
+    }
     return (
         <div>
             <h2>Ход: {currentStep}</h2>
         </div>
-    )
+    );
 }
+
 function checkWinner(cells) {
-    // Возможные выигрышные комбинации
     const winningCombinations = [
-        [0, 1, 2], // Горизонтальная линия сверху
-        [3, 4, 5], // Горизонтальная линия в середине
-        [6, 7, 8], // Горизонтальная линия снизу
-        [0, 3, 6], // Вертикальная линия слева
-        [1, 4, 7], // Вертикальная линия в центре
-        [2, 5, 8], // Вертикальная линия справа
-        [0, 4, 8], // Диагональ слева сверху направо вниз
-        [2, 4, 6], // Диагональ справа сверху налево вниз
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
     ];
 
-    // Проверяем каждую выигрышную комбинацию
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
-
-        // Если все три клетки заполнены одним символом и не пусты
         if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
-            return combination; // Возвращаем массив индексов выигрышной комбинации
+            return combination;
         }
     }
-
-    // Если победителя нет, возвращаем null
     return null;
 }
 
-function useGameState() {
+function useGameState(mode) {
     const [cells, setCells] = useState([null, null, null, null, null, null, null, null, null]);
-    const [currentStep, setCurrentStep] = useState(SYMBOL_O);
+    const [currentStep, setCurrentStep] = useState(Math.random() > 0.5 ? mode.X : mode.O);
     const [winnerSequence, setWinnerSequence] = useState(null);
     const winnerSymbol = winnerSequence ? cells[winnerSequence[0]] : undefined;
-    const isDraw = !winnerSequence && cells.filter(c => c).length === 9;
+    const isDraw = !winnerSequence && cells.every((c) => c);
 
     const handleCellClick = (index) => {
         if (cells[index] || winnerSequence) {
             return;
         }
         const cellsCopy = cells.slice();
-        cellsCopy[index] = currentStep;  //Записываем текущий ход
-        const winner = checkWinner(cellsCopy); //Проверяем, есть ли победитель
+        cellsCopy[index] = currentStep;
+        const winner = checkWinner(cellsCopy);
 
         setCells(cellsCopy);
-        setCurrentStep(currentStep === SYMBOL_O ? SYMBOL_X : SYMBOL_O);
-        setWinnerSequence(winner); //Устонавливаем победителя с помощью useState
+        setCurrentStep(currentStep === mode.O ? mode.X : mode.O);
+        setWinnerSequence(winner);
     };
 
-    const handleResetClick = () => {
+    const handleResetClick = (newMode = mode) => {
         setCells(Array.from({ length: 9 }, () => null));
-        setCurrentStep(Math.random() > 0.5 ? SYMBOL_X : SYMBOL_O)
-        setWinnerSequence(undefined);
+        setCurrentStep(Math.random() > 0.5 ? newMode.X : newMode.O);
+        setWinnerSequence(null);
     };
 
     return {
@@ -127,5 +204,5 @@ function useGameState() {
         handleResetClick,
         winnerSymbol,
         isDraw,
-    }
+    };
 }

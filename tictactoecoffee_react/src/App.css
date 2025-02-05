@@ -59,3 +59,65 @@ h1, h2, h3, h4, h5, h6 {
     width: 25px;
     height: 25px;
 }
+
+body.coffee-milk {
+    background-image: url('coffee-background.jpg');
+    background-size: cover;
+    font-family: 'Caveat', cursive; /* Рукописный шрифт */
+    color: #6f4c3e;
+}
+
+body.star-planet {
+    background: linear-gradient(to right, #1a1a2e, #16213e);
+    color: #e94560;
+    font-family: 'Orbitron', sans-serif; /* Футуристический шрифт */
+}
+
+body.cat-dog {
+    background-color: #f7f7f7;
+    color: #333;
+    font-family: 'Mochiy Pop P One', sans-serif; /* Милый шрифт */
+}
+
+body.fire-water {
+    background: linear-gradient(to right, #ff6f61, #6fa3ef);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+body.sun-moon {
+    background: url('sun-moon-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #f9d56a;
+    font-family: 'Lobster', cursive;
+}
+
+body.apple-orange {
+    background: radial-gradient(circle, #ffcccb, #ffb3b3);
+    color: #ff5733;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body.robot-human {
+    background-color: #20232a;
+    color: #61dafb;
+    font-family: 'Roboto Mono', monospace;
+}
+
+body.dragon-unicorn {
+    background: linear-gradient(to right, #ffafbd, #ffc3a0);
+    color: #6a0572;
+    font-family: 'Dancing Script', cursive;
+}
+
+body.bird-fish {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body.book-computer {
+    background-color: #f0f0f0;
+    color: #333;
+    font-family: 'Georgia', serif;
+}
